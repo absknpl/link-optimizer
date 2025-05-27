@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Ulvis Link Shortener",
+  "name": "Link Optimizer +",
   "version": "1.0",
   "description": "Create short links and QR codes with Ulvis.net",
   "icons": {
