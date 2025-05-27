@@ -1,0 +1,131 @@
+body {
+  width: 350px;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  padding: 0;
+}
+
+.container {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  margin: 0 0 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.tabs {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  background: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  background: #d0d0d0;
+}
+
+.tab-btn.active {
+  background: #4285f4;
+  color: white;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+input, button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+input {
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+}
+
+input[readonly] {
+  background: #f0f0f0;
+  color: #333;
+}
+
+button {
+  background: #4285f4;
+  color: white;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #3367d6;
+}
+
+button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.input-group {
+  display: flex;
+  gap: 5px;
+}
+
+.input-group input {
+  flex: 1;
+}
+
+.input-group button {
+  width: auto;
+  min-width: 70px;
+}
+
+#qr-code {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+}
+
+#download-qr, #copy-qr {
+  display: none;
+  margin-top: 5px;
+}
+
+#scanned-url {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 14px;
+  color: #555;
+  word-break: break-all;
+  background: #f5f5f5;
+  border-radius: 5px;
+  min-height: 20px;
+}

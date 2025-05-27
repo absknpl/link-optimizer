@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener & QR Code Tool</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="shorten-tab">Shorten URL</button>
+      <button class="tab-btn" data-tab="qr-tab">QR Code</button>
+    </div>
+
+    <!-- Shorten URL Tab -->
+    <div id="shorten-tab" class="tab-content active">
+      <h3>Shorten URL</h3>
+      <button id="shorten-btn">Shorten Current URL</button>
+      <div class="input-group">
+        <input id="short-url" type="text" readonly placeholder="Shortened URL will appear here">
+        <button id="copy-short">Copy</button>
+      </div>
+    </div>
+
+    <!-- QR Code Tab -->
+    <div id="qr-tab" class="tab-content">
+      <h3>Generate QR Code</h3>
+      <input id="qr-input" type="text" placeholder="Enter URL or paste">
+      <button id="generate-qr">Generate QR</button>
+      <button id="generate-current-page">QR for Current Page</button>
+      <div id="qr-code"></div>
+      <button id="download-qr">Download QR</button>
+      <button id="copy-qr">Copy QR Image</button>
+
+      <h3>Scan QR Code</h3>
+      <input id="qr-file" type="file" accept="image/*">
+      <canvas id="canvas" style="display: none;"></canvas>
+      <div id="scanned-url">Scanned URL will appear here</div>
+      <button id="copy-scanned" disabled>Copy URL</button>
+    </div>
+  </div>
+
+  <script src="qrcode.min.js"></script>
+  <script src="jsQR.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
