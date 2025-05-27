@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>allinOne Extension</title>
+    <link rel="stylesheet" href="popup.css">
+    <script src="qrcode.min.js"></script>
+    <script src="jsQR.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Link Optimizer+</h2>
+        <p class="subtitle">solution for your everyday browsing</p>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="shorten-tab">Shorten URL</button>
+            <button class="tab-btn" data-tab="qr-tab">QR Code</button>
+            <button class="tab-btn" data-tab="scan-tab">Scan QR</button>
+        </div>
+
+        <!-- Shorten URL Tab -->
+        <div id="shorten-tab" class="tab-content active">
+            <button id="shorten-btn">Shorten Current URL</button>
+            <div class="input-group">
+                <input id="short-url" type="text" readonly placeholder="Shortened URL will appear here">
+                <button id="copy-short">Copy</button>
+            </div>
+        </div>
+
+        <!-- QR Code Tab -->
+        <div id="qr-tab" class="tab-content">
+    <input type="text" id="qr-input" placeholder="Enter URL or paste">
+    <button id="generate-qr">Generate QR</button>
+    <button id="generate-current">QR for Current Page</button>
+    <div id="qrcode"></div>
+    <div class="qr-action-buttons">
+        <button id="copy-qr">Copy QR</button>
+        <button id="save-qr">Save QR</button>
+    </div>
+</div>
+
+        <!-- Scan QR Tab -->
+        <div id="scan-tab" class="tab-content">
+    <input type="file" id="file-input" accept="image/*">
+    <div id="scanned-url">Scanned URL will appear here</div>
+    <div class="button-group">
+        <button id="copy-scanned">Copy URL</button>
+        <button id="launch-site" class="secondary-button">Launch Site</button>
+    </div>
+</div>
+    </div>
+<footer style="margin-top: 20px; text-align: center; font-size: 12px; color: #8e8e93;">
+    &copy; Abhishek Nepal | <a href="https://www.abisek.dev" target="_blank" style="color: #007aff; text-decoration: none;">www.abisek.dev</a>
+  </footer>
+    <script src="popup.js"></script>
+</body>
+</html>

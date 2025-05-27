@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Link Optimizer +",
+  "version": "1.0",
+  "description": "Create short links and QR codes with Ulvis.net",
+  "icons": {
+    "16": "extension_icon@16px.png",
+    "32": "extension_icon@32px.png",
+    "48": "extension_icon@48px.png",
+    "128": "extension_icon@128px.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+    "16": "extension_icon@16px.png",
+    "32": "extension_icon@32px.png",
+    "48": "extension_icon@48px.png",
+    "128": "extension_icon@128px.png"
+    }
+  },
+"permissions": [
+    "tabs",
+    "clipboardRead",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://spoo.me/*"
+  ]
+}
