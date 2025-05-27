@@ -218,3 +218,4 @@ General inquiries: contact@abisek.dev
 [![GitHub Stars](https://img.shields.io/github/stars/absknpl/link-optimizer?style=social)](https://github.com/absknpl/link-optimizer)
 
 **Crafted with ❤️ by abisek**
+![link-optimizer-banner (1)](https://github.com/user-attachments/assets/74b5d3a3-8407-4505-b79d-716ae8be53d1)
