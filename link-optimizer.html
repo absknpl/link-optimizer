@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Link Optimizer+ - The ultimate browser extension for URL shortening, QR code generation and scanning. Boost your productivity with our professional toolkit."
+    />
+    <meta
+      name="keywords"
+      content="URL shortener, QR code generator, QR scanner, browser extension, productivity tools"
+    />
+    <meta name="author" content="Your Name" />
+    <meta
+      property="og:title"
+      content="Link Optimizer+ | Ultimate URL & QR Toolkit"
+    />
+    <meta
+      property="og:description"
+      content="The professional's choice for URL shortening and QR code management. Available as a Chrome extension."
+    />
+    <meta
+      property="og:image"
+      content="https://abisek.dev/images/link-optimizer-banner.png"
+    />
+    <meta property="og:url" content="https://abisek.dev/link-optimizer" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Link Optimizer+ | Ultimate URL & QR Toolkit"
+    />
+    <meta
+      name="twitter:description"
+      content="Professional URL shortening and QR code solution for browsers"
+    />
+    <meta
+      name="twitter:image"
+      content="https://abisek.dev/images/link-optimizer-banner.png"
+    />
+    <title>Link Optimizer+ | Professional URL & QR Toolkit</title>
+    <link
+      rel="icon"
+      href="images/link-optimizer-favicon.ico"
+      type="image/x-icon"
+    />
+    <style>
+      :root {
+        --primary: #fa9302;
+        --primary-dark: #3a56d4;
+        --secondary: #3be1f0;
+        --accent: #4895ef;
+        --dark: #1a1a2e;
+        --light: #f8f9fa;
+        --success: #4cc9f0;
+        --glass: rgba(255, 255, 255, 0.15);
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        color: var(--dark);
+        background-color: #f5f7ff;
+        background-image: radial-gradient(
+          circle at 10% 20%,
+          rgba(67, 97, 238, 0.1) 0%,
+          rgba(255, 255, 255, 1) 90%
+        );
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      header {
+        padding: 30px 0;
+        position: relative;
+        z-index: 10;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+      }
+
+      .logo span {
+        color: var(--secondary);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        color: var(--dark);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: var(--primary);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .cta-button {
+        background-color: var(--primary);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        border: 2px solid var(--primary);
+      }
+
+      .cta-button:hover {
+        background-color: transparent;
+        color: var(--primary);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+      }
+
+      .hero-text {
+        flex: 1;
+        max-width: 600px;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: #555;
+        margin-bottom: 30px;
+        max-width: 500px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .secondary-button {
+        background-color: transparent;
+        color: var(--primary);
+        padding: 10px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        border: 2px solid var(--primary);
+      }
+
+      .secondary-button:hover {
+        background-color: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .hero-image {
+        flex: 1;
+        position: relative;
+        max-width: 600px;
+      }
+
+      .extension-preview {
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 25px 50px -12px rgba(67, 97, 238, 0.25);
+        transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+        transition: var(--transition);
+        border: 12px solid #3be1f0;
+      }
+
+      .extension-preview:hover {
+        transform: perspective(500px) rotateY(0deg) rotateX(0deg);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 100px 0;
+        background-color: white;
+        position: relative;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 15px;
+      }
+
+      .section-title p {
+        color: #666;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(67, 97, 238, 0.1);
+      }
+
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .feature-icon svg {
+        width: 30px;
+        height: 30px;
+        color: white;
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: var(--dark);
+      }
+
+      .feature-card p {
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      /* How It Works */
+      .how-it-works {
+        padding: 100px 0;
+        background-color: #f9faff;
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .step {
+        display: flex;
+        gap: 30px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        flex-shrink: 0;
+        font-size: 1.2rem;
+      }
+
+      .step-content {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        flex: 1;
+      }
+
+      .step-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: var(--dark);
+      }
+
+      .step-content p {
+        color: #666;
+      }
+
+      .steps::before {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(to bottom, var(--primary), var(--accent));
+        left: 25px;
+        top: 0;
+        z-index: 0;
+      }
+
+      /* Testimonials */
+      .testimonials {
+        padding: 100px 0;
+        background-color: white;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .testimonial-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        color: #555;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .testimonial-text::before {
+        content: '"';
+        font-size: 4rem;
+        position: absolute;
+        top: -20px;
+        left: -15px;
+        color: rgba(67, 97, 238, 0.1);
+        font-family: serif;
+        z-index: 0;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .author-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .author-info h4 {
+        font-weight: 600;
+        color: var(--dark);
+      }
+
+      .author-info p {
+        color: #777;
+        font-size: 0.9rem;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 100px 0;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        text-align: center;
+        border-radius: 0 0 20px 20px;
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .cta-section p {
+        max-width: 700px;
+        margin: 0 auto 30px;
+        opacity: 0.9;
+      }
+
+      .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .white-button {
+        background-color: white;
+        color: var(--primary);
+        padding: 12px 25px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+
+      .white-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .outline-button {
+        background-color: transparent;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        border: 2px solid white;
+      }
+
+      .outline-button:hover {
+        background-color: white;
+        color: var(--primary);
+        transform: translateY(-3px);
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark);
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 50px;
+      }
+
+      .footer-logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 20px;
+        display: inline-block;
+      }
+
+      .footer-about p {
+        color: #aaa;
+        margin-bottom: 20px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-link {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .social-link:hover {
+        background-color: var(--primary);
+        transform: translateY(-3px);
+      }
+
+      .footer-links h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #aaa;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #777;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .hero-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .hero-text {
+          max-width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .hero h1 {
+          font-size: 2.8rem;
+        }
+
+        .hero-buttons {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .cta-section h2 {
+          font-size: 2rem;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <nav>
+          <a href="#" class="logo">Link <span>Optimizer+</span></a>
+          <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#testimonials">Testimonials</a>
+            <a
+              href="https://github.com/absknpl/link-optimizer"
+              class="cta-button"
+              >Download</a
+            >
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>The Ultimate URL & QR Toolkit for Professionals</h1>
+            <p>
+              Streamline your workflow with our all-in-one solution for URL
+              shortening, QR code generation, and scanning. Built for
+              developers, marketers, and productivity enthusiasts.
+            </p>
+            <div class="hero-buttons">
+              <a
+                href="https://github.com/absknpl/link-optimizer"
+                class="cta-button"
+                >Get the Extension</a
+              >
+              <a href="#how-it-works" class="secondary-button">How It Works</a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img
+              src="images/link-up.png"
+              alt="Link Optimizer+ Extension Preview"
+              class="extension-preview"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Powerful Features</h2>
+          <p>
+            Everything you need to optimize your links and QR codes in one
+            beautiful extension
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                />
+              </svg>
+            </div>
+            <h3>Smart URL Shortening</h3>
+            <p>
+              Transform long, messy URLs into clean, shareable links with just
+              one click. Perfect for social media, presentations, and
+              documentation.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+            </div>
+            <h3>QR Code Generation</h3>
+            <p>
+              Create professional QR codes for any URL, contact information, or
+              plain text. Customize colors and download in multiple formats.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </div>
+            <h3>Instant QR Scanning</h3>
+            <p>
+              Decode QR codes from images or your camera. Copy the content with
+              one click or visit the URL directly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+      <div class="container">
+        <div class="section-title">
+          <h2>How It Works</h2>
+          <p>Get started in minutes with our intuitive workflow</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Install the Extension</h3>
+              <p>
+                Add Link Optimizer+ to your Chrome browser with one click from
+                the Chrome Web Store.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Access from Anywhere</h3>
+              <p>
+                Click the extension icon in your toolbar to open the popup
+                interface with all tools.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Optimize Your Links</h3>
+              <p>
+                Shorten URLs, generate QR codes, or scan existing ones - all
+                from one convenient interface.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="section-title">
+          <h2>What Users Say</h2>
+          <p>Trusted by professionals across industries</p>
+        </div>
+        <div class="testimonial-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              Link Optimizer+ has become an essential tool in my daily workflow.
+              The QR generation is lightning fast and the URL shortening saves
+              me so much time when sharing links with my team.
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="https://randomuser.me/api/portraits/women/44.jpg"
+                alt="Sarah Johnson"
+                class="author-avatar"
+              />
+              <div class="author-info">
+                <h4>Sarah Johnson</h4>
+                <p>Marketing Director</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              As a developer, I appreciate tools that just work without bloat.
+              Link Optimizer+ is exactly that - simple, fast, and reliable. The
+              clean interface is a bonus!
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="https://randomuser.me/api/portraits/men/32.jpg"
+                alt="Michael Chen"
+                class="author-avatar"
+              />
+              <div class="author-info">
+                <h4>Michael Chen</h4>
+                <p>Senior Developer</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              I've tried many URL shorteners and QR tools, but Link Optimizer+
+              combines everything I need in one place. The ability to generate
+              QR codes for current pages is a game-changer.
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="https://randomuser.me/api/portraits/women/68.jpg"
+                alt="Emily Rodriguez"
+                class="author-avatar"
+              />
+              <div class="author-info">
+                <h4>Emily Rodriguez</h4>
+                <p>Product Manager</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to Optimize Your Workflow?</h2>
+        <p>
+          Join thousands of professionals who use Link Optimizer+ daily to save
+          time and work more efficiently.
+        </p>
+        <div class="cta-buttons">
+          <a href="#" class="white-button">Chrome</a>
+          <a
+            href="https://github.com/absknpl/link-optimizer"
+            class="outline-button"
+            >GitHub</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="#" class="footer-logo">Link Optimizer+</a>
+            <p>
+              The ultimate toolkit for URL shortening and QR code management.
+              Built for professionals who value efficiency and design.
+            </p>
+            <div class="social-links">
+              <a href="https://github.com/absknpl" class="social-link">
+                <svg
+                  id="GitHub_24"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <rect
+                    width="24"
+                    height="24"
+                    stroke="none"
+                    fill="#000000"
+                    opacity="0"
+                  />
+
+                  <g transform="matrix(0.83 0 0 0.83 12 12)">
+                    <path
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-dashoffset: 0;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 4;
+                        fill: rgb(0, 0, 0);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" translate(-15, -14.82)"
+                      d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 20.623 6.872 25.328 12.092 26.630000000000003 C 12.036 26.468 12 26.28 12 26.047 L 12 23.996000000000002 C 11.513 23.996000000000002 10.697 23.996000000000002 10.492 23.996000000000002 C 9.671000000000001 23.996000000000002 8.941 23.643 8.587000000000002 22.987000000000002 C 8.194 22.258000000000003 8.126000000000001 21.143 7.152000000000001 20.461000000000002 C 6.863000000000001 20.234 7.083000000000001 19.975 7.416000000000001 20.01 C 8.031 20.184 8.541 20.606 9.021 21.232000000000003 C 9.499 21.859 9.724 22.001 10.617 22.001 C 11.05 22.001 11.698 21.976000000000003 12.308000000000002 21.880000000000003 C 12.636000000000001 21.047000000000004 13.203000000000001 20.28 13.896 19.918000000000003 C 9.9 19.507 7.993000000000001 17.519000000000002 7.993000000000001 14.820000000000004 C 7.993000000000001 13.658000000000005 8.488000000000001 12.534000000000004 9.329 11.587000000000003 C 9.053 10.647 8.706 8.73 9.435 8 C 11.233 8 12.32 9.166 12.581 9.481 C 13.477 9.174 14.461 9 15.495 9 C 16.531 9 17.519 9.174 18.416999999999998 9.483 C 18.675 9.17 19.763 8 21.565 8 C 22.297 8.731 21.946 10.656 21.667 11.594 C 22.503 12.539 22.995 13.66 22.995 14.82 C 22.995 17.517 21.091 19.504 17.101 19.917 C 18.199 20.49 19 22.1 19 23.313 L 19 26.046999999999997 C 19 26.150999999999996 18.977 26.225999999999996 18.965 26.314999999999998 C 23.641 24.676 27 20.236 27 15 C 27 8.373 21.627 3 15 3 z"
+                      stroke-linecap="round"
+                    />
+                  </g>
+                </svg>
+              </a>
+              <a href="https://www.abisek.dev" class="social-link">
+                <svg
+                  id="Internet_24"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <rect
+                    width="24"
+                    height="24"
+                    stroke="none"
+                    fill="#000000"
+                    opacity="0"
+                  />
+
+                  <g transform="matrix(0.43 0 0 0.43 12 12)">
+                    <path
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-dashoffset: 0;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 4;
+                        fill: rgb(0, 0, 0);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" translate(-25.5, -25.5)"
+                      d="M 24 2 C 11.863281 2 2 11.863281 2 24 C 2 36.136719 11.863281 46 24 46 C 26.058594 46 28.070313 45.703125 30 45.15625 L 30 41.296875 C 28.503906 42.742188 26.808594 43.667969 25 43.921875 L 25 36 L 30 36 L 30 34 L 25 34 L 25 25 L 30 25 L 30 23 L 25 23 L 25 14 L 34.371094 14 C 35.265625 16.582031 35.832031 19.519531 35.957031 22.660156 L 37 23.640625 L 37.988281 24.5625 L 38.453125 25 L 43.964844 25 C 43.886719 26.527344 43.644531 28.027344 43.230469 29.480469 L 44.847656 30.996094 C 45.601563 28.757813 46 26.40625 46 24 C 46 11.863281 36.136719 2 24 2 Z M 23 4.082031 L 23 12 L 14.441406 12 C 14.816406 11.175781 15.214844 10.390625 15.65625 9.679688 C 17.652344 6.457031 20.226563 4.472656 23 4.082031 Z M 25 4.082031 C 28.503906 4.566406 31.578125 7.566406 33.578125 12 L 25 12 Z M 31.5 5.453125 C 34.898438 6.828125 37.820313 9.113281 39.988281 12 L 35.71875 12 C 34.625 9.371094 33.183594 7.140625 31.5 5.453125 Z M 16.425781 5.492188 C 15.523438 6.402344 14.6875 7.445313 13.957031 8.625 C 13.316406 9.660156 12.746094 10.792969 12.25 12 L 8.019531 12 C 10.171875 9.136719 13.0625 6.867188 16.425781 5.492188 Z M 6.691406 14 L 11.519531 14 C 10.640625 16.726563 10.121094 19.773438 10.03125 23 L 4.023438 23 C 4.1875 19.726563 5.144531 16.671875 6.691406 14 Z M 13.636719 14 L 23 14 L 23 23 L 12.03125 23 C 12.128906 19.726563 12.699219 16.664063 13.636719 14 Z M 36.453125 14 L 41.324219 14 C 42.867188 16.671875 43.8125 19.730469 43.972656 23 L 37.96875 23 C 37.875 19.769531 37.34375 16.722656 36.453125 14 Z M 4.023438 25 L 10.03125 25 C 10.121094 28.226563 10.640625 31.273438 11.519531 34 L 6.691406 34 C 5.144531 31.328125 4.1875 28.273438 4.023438 25 Z M 12.03125 25 L 23 25 L 23 34 L 13.636719 34 C 12.699219 31.335938 12.128906 28.273438 12.03125 25 Z M 33.953125 25 C 33.421875 25.027344 33 25.464844 33 26 L 33 45.25 C 33 45.65625 33.242188 46.019531 33.617188 46.171875 C 33.992188 46.328125 34.421875 46.242188 34.707031 45.957031 L 37.71875 42.941406 L 40.230469 48.417969 C 40.460938 48.917969 41.054688 49.136719 41.558594 48.90625 L 45.417969 47.140625 C 45.917969 46.910156 46.136719 46.316406 45.90625 45.8125 L 43.300781 40.125 L 48 40.125 C 48.410156 40.125 48.78125 39.875 48.929688 39.492188 C 49.082031 39.109375 48.984375 38.675781 48.683594 38.394531 L 34.683594 25.269531 C 34.484375 25.085938 34.222656 24.988281 33.953125 25 Z M 35 28.308594 L 45.46875 38.125 L 41.875 38.125 C 41.71875 38.125 41.566406 38.160156 41.425781 38.230469 L 41.320313 38.285156 C 40.839844 38.527344 40.632813 39.105469 40.859375 39.59375 L 43.671875 45.734375 L 41.628906 46.671875 L 38.9375 40.800781 C 38.804688 40.503906 38.527344 40.292969 38.207031 40.234375 C 37.882813 40.175781 37.554688 40.28125 37.324219 40.515625 L 35 42.835938 Z M 8.019531 36 L 12.25 36 C 12.746094 37.207031 13.316406 38.339844 13.957031 39.375 C 14.6875 40.554688 15.523438 41.597656 16.425781 42.507813 C 13.0625 41.132813 10.171875 38.863281 8.019531 36 Z M 14.441406 36 L 23 36 L 23 43.917969 C 20.226563 43.527344 17.652344 41.542969 15.65625 38.324219 C 15.214844 37.609375 14.816406 36.824219 14.441406 36 Z"
+                      stroke-linecap="round"
+                    />
+                  </g>
+                </svg>
+              </a>
+              <a href="https://dribbble.com/absknpl" class="social-link">
+                <svg
+                  id="Computer_Logo_Dribble_24"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <rect
+                    width="24"
+                    height="24"
+                    stroke="none"
+                    fill="#000000"
+                    opacity="0"
+                  />
+
+                  <g transform="matrix(1.43 0 0 1.43 12 12)">
+                    <g style="">
+                      <g transform="matrix(1 0 0 1 0 0)">
+                        <path
+                          style="
+                            stroke: none;
+                            stroke-width: 1;
+                            stroke-dasharray: none;
+                            stroke-linecap: butt;
+                            stroke-dashoffset: 0;
+                            stroke-linejoin: miter;
+                            stroke-miterlimit: 4;
+                            fill: rgb(255, 185, 170);
+                            fill-rule: nonzero;
+                            opacity: 1;
+                          "
+                          transform=" translate(-7, -7)"
+                          d="M 6.99984 0.780884 C 5.67854 0.780884 4.45348 1.19295 3.44615 1.89558 C 2.06497 2.85898 1.09315 4.36866 0.843863 6.11142 C 0.802359 6.40158 0.780884 6.6982 0.780884 6.99984 C 0.780884 9.26206 1.98877 11.2422 3.79478 12.3304 C 4.73077 12.8944 5.82742 13.2188 6.99984 13.2188 C 8.17227 13.2188 9.26891 12.8944 10.2049 12.3304 C 11.7701 11.3873 12.8861 9.77424 13.1558 7.88827 C 13.1973 7.5981 13.2188 7.30148 13.2188 6.99984 C 13.2188 5.2597 12.5041 3.68649 11.3522 2.55773 C 10.2305 1.45858 8.69434 0.780884 6.99984 0.780884 Z"
+                          stroke-linecap="round"
+                        />
+                      </g>
+                      <g transform="matrix(1 0 0 1 0 0)">
+                        <path
+                          style="
+                            stroke: rgb(234, 86, 61);
+                            stroke-width: 1;
+                            stroke-dasharray: none;
+                            stroke-linecap: round;
+                            stroke-dashoffset: 0;
+                            stroke-linejoin: round;
+                            stroke-miterlimit: 4;
+                            fill: none;
+                            fill-rule: nonzero;
+                            opacity: 1;
+                          "
+                          transform=" translate(-7, -7)"
+                          d="M 6.99984 0.780762 C 5.67854 0.780762 4.45348 1.19283 3.44615 1.89546 C 2.06497 2.85886 1.09315 4.36854 0.843863 6.1113 C 0.802359 6.40146 0.780884 6.69808 0.780884 6.99972 C 0.780884 9.26193 1.98877 11.242 3.79478 12.3303 C 4.73077 12.8942 5.82742 13.2187 6.99984 13.2187 C 8.17227 13.2187 9.26891 12.8942 10.2049 12.3303 C 11.7701 11.3871 12.8861 9.77412 13.1558 7.88814 C 13.1973 7.59798 13.2188 7.30136 13.2188 6.99972 C 13.2188 5.25958 12.5041 3.68636 11.3522 2.55761 C 10.2305 1.45846 8.69434 0.780762 6.99984 0.780762 Z"
+                          stroke-linecap="round"
+                        />
+                      </g>
+                      <g transform="matrix(1 0 0 1 -0.9 -2.47)">
+                        <path
+                          style="
+                            stroke: rgb(234, 86, 61);
+                            stroke-width: 1;
+                            stroke-dasharray: none;
+                            stroke-linecap: round;
+                            stroke-dashoffset: 0;
+                            stroke-linejoin: round;
+                            stroke-miterlimit: 4;
+                            fill: none;
+                            fill-rule: nonzero;
+                            opacity: 1;
+                          "
+                          transform=" translate(-6.1, -4.53)"
+                          d="M 0.84375 6.11131 C 2.00732 6.40745 4.86752 6.82205 6.99973 6.11131 C 9.13194 5.40057 10.7897 3.44604 11.3521 2.55762"
+                          stroke-linecap="round"
+                        />
+                      </g>
+                      <g transform="matrix(1 0 0 1 -0.17 0.11)">
+                        <path
+                          style="
+                            stroke: rgb(234, 86, 61);
+                            stroke-width: 1;
+                            stroke-dasharray: none;
+                            stroke-linecap: round;
+                            stroke-dashoffset: 0;
+                            stroke-linejoin: round;
+                            stroke-miterlimit: 4;
+                            fill: none;
+                            fill-rule: nonzero;
+                            opacity: 1;
+                          "
+                          transform=" translate(-6.83, -7.11)"
+                          d="M 3.44604 1.89551 C 4.33447 2.41237 6.46668 3.97914 7.88816 6.11135 C 9.30964 8.24356 10.0249 11.1457 10.2048 12.3303"
+                          stroke-linecap="round"
+                        />
+                      </g>
+                      <g transform="matrix(1 0 0 1 1.48 3.11)">
+                        <path
+                          style="
+                            stroke: rgb(234, 86, 61);
+                            stroke-width: 1;
+                            stroke-dasharray: none;
+                            stroke-linecap: round;
+                            stroke-dashoffset: 0;
+                            stroke-linejoin: round;
+                            stroke-miterlimit: 4;
+                            fill: none;
+                            fill-rule: nonzero;
+                            opacity: 1;
+                          "
+                          transform=" translate(-8.48, -10.11)"
+                          d="M 3.79468 12.3303 C 4.38696 11.4419 6.47906 9.48734 8.33237 8.77661 C 10.1857 8.06587 12.1721 7.88818 13.1557 7.88818"
+                          stroke-linecap="round"
+                        />
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/in/absknpl" class="social-link">
+                <svg
+                  id="LinkedIn_24"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <rect
+                    width="24"
+                    height="24"
+                    stroke="none"
+                    fill="#000000"
+                    opacity="0"
+                  />
+
+                  <g transform="matrix(0.91 0 0 0.91 12 12)">
+                    <path
+                      style="
+                        stroke: none;
+                        stroke-width: 1;
+                        stroke-dasharray: none;
+                        stroke-linecap: butt;
+                        stroke-dashoffset: 0;
+                        stroke-linejoin: miter;
+                        stroke-miterlimit: 4;
+                        fill: rgb(0, 0, 0);
+                        fill-rule: nonzero;
+                        opacity: 1;
+                      "
+                      transform=" translate(-15, -15)"
+                      d="M 24 4 L 6 4 C 4.895 4 4 4.895 4 6 L 4 24 C 4 25.105 4.895 26 6 26 L 24 26 C 25.105 26 26 25.105 26 24 L 26 6 C 26 4.895 25.105 4 24 4 z M 10.954 22 L 8.004000000000001 22 L 8.004000000000001 12.508 L 10.954 12.508 L 10.954 22 z M 9.449 11.151 C 8.498 11.151 7.729 10.379999999999999 7.729 9.431 C 7.729 8.482 8.499 7.711999999999999 9.449 7.711999999999999 C 10.397 7.711999999999999 11.168 8.482999999999999 11.168 9.431 C 11.168 10.38 10.397 11.151 9.449 11.151 z M 22.004 22 L 19.056 22 L 19.056 17.384 C 19.056 16.283 19.036 14.867 17.523 14.867 C 15.988 14.867 15.751999999999999 16.066000000000003 15.751999999999999 17.304000000000002 L 15.751999999999999 22 L 12.803999999999998 22 L 12.803999999999998 12.508 L 15.633999999999999 12.508 L 15.633999999999999 13.805 L 15.673999999999998 13.805 C 16.067999999999998 13.059 17.029999999999998 12.272 18.464999999999996 12.272 C 21.451999999999998 12.272 22.003999999999998 14.238 22.003999999999998 16.794 L 22.003999999999998 22 z"
+                      stroke-linecap="round"
+                    />
+                  </g>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h3>Product</h3>
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#how-it-works">How It Works</a></li>
+              <li><a href="#how-it-works">For Chrome</a></li>
+              <li><a href="#how-it-works">For Firefox</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Abhishek Nepal</h3>
+            <ul>
+              <li><a href="https://www.abisek.dev">Portfolio Site</a></li>
+              <li>
+                <a href="https://www.abisek.dev/text-to-calendar"
+                  >Text to Calendar Pro</a
+                >
+              </li>
+              <li>
+                <a href="https://www.abisek.dev/leaderboard-app"
+                  >F1 Simulator</a
+                >
+              </li>
+              <li><a href="https://www.abisek.dev/OutfitAI">OutFit AI</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Legal</h3>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Abhishek Nepal. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Sticky header on scroll
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        if (window.scrollY > 50) {
+          header.style.background = "rgba(255, 255, 255, 0.95)";
+          header.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)";
+        } else {
+          header.style.background = "transparent";
+          header.style.boxShadow = "none";
+        }
+      });
+
+      // Animation for feature cards on scroll
+      const featureCards = document.querySelectorAll(".feature-card");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      featureCards.forEach((card) => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(20px)";
+        card.style.transition = "all 0.5s ease-out";
+        observer.observe(card);
+      });
+
+      // Mobile menu toggle (would need additional HTML)
+      // This is just a placeholder for potential mobile menu functionality
+    </script>
+  </body>
+</html>

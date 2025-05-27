@@ -28,19 +28,25 @@
 
         <!-- QR Code Tab -->
         <div id="qr-tab" class="tab-content">
-            <input type="text" id="qr-input" placeholder="Enter URL or paste">
-            <button id="generate-qr">Generate QR</button>
-            <button id="generate-current">QR for Current Page</button>
-            <div id="qrcode"></div>
-            <button id="copy-qr">Copy QR</button>
-        </div>
+    <input type="text" id="qr-input" placeholder="Enter URL or paste">
+    <button id="generate-qr">Generate QR</button>
+    <button id="generate-current">QR for Current Page</button>
+    <div id="qrcode"></div>
+    <div class="qr-action-buttons">
+        <button id="copy-qr">Copy QR</button>
+        <button id="save-qr">Save QR</button>
+    </div>
+</div>
 
         <!-- Scan QR Tab -->
         <div id="scan-tab" class="tab-content">
-            <input type="file" id="file-input" accept="image/*">
-            <div id="scanned-url">Scanned URL will appear here</div>
-            <button id="copy-scanned">Copy URL</button>
-        </div>
+    <input type="file" id="file-input" accept="image/*">
+    <div id="scanned-url">Scanned URL will appear here</div>
+    <div class="button-group">
+        <button id="copy-scanned">Copy URL</button>
+        <button id="launch-site" class="secondary-button">Launch Site</button>
+    </div>
+</div>
     </div>
 <footer style="margin-top: 20px; text-align: center; font-size: 12px; color: #8e8e93;">
     &copy; Abhishek Nepal | <a href="https://www.abisek.dev" target="_blank" style="color: #007aff; text-decoration: none;">www.abisek.dev</a>

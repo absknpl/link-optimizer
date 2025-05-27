@@ -1,5 +1,26 @@
+// Element References
+const qrcodeDiv = document.getElementById('qrcode');
+const fileInput = document.getElementById('file-input');
+const scannedUrlDiv = document.getElementById('scanned-url');
+const copyScannedBtn = document.getElementById('copy-scanned');
+const launchSiteBtn = document.getElementById('launch-site');
+
+// QR Code Action Buttons
+const copyQrBtn = document.getElementById('copy-qr') || { disabled: false };
+const saveQrBtn = document.getElementById('save-qr') || { disabled: false };
+
+// Constants
+const SPOO_API_URL = 'https://spoo.me/';
+
+// State Variables
+let currentScannedUrl = '';
+
+// Initialize buttons
+copyQrBtn.disabled = true;
+saveQrBtn.disabled = true;
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Tab switching
+    // Tab Switching
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -11,8 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Shorten URL functionality
-    const SPOO_API_URL = 'https://spoo.me/';
+    // URL Shortening
     document.getElementById('shorten-btn').addEventListener('click', async () => {
         try {
             const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -38,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Copy short URL
     document.getElementById('copy-short').addEventListener('click', () => {
         const shortUrl = document.getElementById('short-url').value;
         if (shortUrl && !shortUrl.startsWith('Error')) {
@@ -47,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // QR Code Generation
-    const qrcodeDiv = document.getElementById('qrcode');
     document.getElementById('generate-qr').addEventListener('click', function() {
         const url = document.getElementById('qr-input').value.trim();
         if (url) {
@@ -65,6 +83,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('qr-input').value = tab.url;
             }
         });
+    });
+
+    // QR Code Actions
+    saveQrBtn.addEventListener('click', function() {
+        const qrCodeImage = qrcodeDiv.querySelector('img');
+        if (qrCodeImage) {
+            const link = document.createElement('a');
+            link.href = qrCodeImage.src;
+            link.download = 'qr-code-' + new Date().getTime() + '.png';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Visual feedback
+            const originalText = saveQrBtn.textContent;
+            saveQrBtn.textContent = 'Saved!';
+            setTimeout(() => {
+                saveQrBtn.textContent = originalText;
+            }, 2000);
+        }
     });
 
     document.getElementById('copy-qr').addEventListener('click', function() {
@@ -85,11 +124,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // QR Code Scanning
-    const fileInput = document.getElementById('file-input');
-    const scannedUrlDiv = document.getElementById('scanned-url');
-    const copyScannedBtn = document.getElementById('copy-scanned');
+    // QR Code Observer
+    const observer = new MutationObserver(function(mutations) {
+        const hasQR = qrcodeDiv.querySelector('img') !== null;
+        saveQrBtn.disabled = !hasQR;
+        copyQrBtn.disabled = !hasQR;
+    });
+    observer.observe(qrcodeDiv, { childList: true });
 
+    // QR Code Scanning
     fileInput.addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
@@ -108,13 +151,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     const code = jsQR(imageData.data, imageData.width, imageData.height);
                     
                     if (code) {
+                        currentScannedUrl = code.data;
                         scannedUrlDiv.textContent = code.data;
+                        launchSiteBtn.disabled = false;
                     } else {
                         scannedUrlDiv.textContent = 'No QR code found';
+                        launchSiteBtn.disabled = true;
                     }
                 };
             };
             reader.readAsDataURL(file);
+        }
+    });
+
+    // Scanned URL Actions
+    launchSiteBtn.addEventListener('click', function() {
+        if (currentScannedUrl) {
+            chrome.tabs.create({ url: currentScannedUrl });
         }
     });
 
