@@ -1,12 +1,12 @@
+Here's the updated README that covers both Chrome and Firefox versions:
+
 # **Link Optimizer+**
 
-🚀 **The Ultimate Browser Extension for URL Shortening & QR Code Management**
+🚀 **The Ultimate Browser Extension for URL Shortening & QR Code Management** (Chrome & Firefox)
 
 ---
 
-![link-up (1)](https://github.com/user-attachments/assets/75e05d76-8334-4eb7-bf29-d97d14df557f)
-
-![link-optimizer-banner (1)](https://github.com/user-attachments/assets/1d7133d7-7460-4b98-b44c-ba902c553c72)
+![Extension Banner](https://github.com/user-attachments/assets/75e05d76-8334-4eb7-bf29-d97d14df557f)
 
 ## **📌 Table of Contents**
 
@@ -24,12 +24,12 @@
 
 ## **🌐 Project Overview**
 
-**Link Optimizer+** is a **high-performance Chrome extension** designed for professionals who need:  
+**Link Optimizer+** is a **cross-browser extension** designed for professionals who need:  
 ✔ **Instant URL shortening** (Spoo.me API)  
 ✔ **Dynamic QR code generation & scanning**  
 ✔ **Seamless integration** with browser workflows
 
-Built with **vanilla JavaScript** and **modern CSS**, this extension delivers **blazing-fast performance** without bloated dependencies.
+Available for both **Google Chrome** and **Mozilla Firefox**, built with **vanilla JavaScript** and **modern CSS** for maximum performance.
 
 **Target Users:**
 
@@ -50,50 +50,50 @@ Built with **vanilla JavaScript** and **modern CSS**, this extension delivers **
 
 ### **📲 QR Code Generation**
 
-- Generate QR codes for:
-  - Current webpage
-  - Custom URLs
-  - Plain text
-- Download as **PNG/SVG**
+- Generate QR codes for current page or custom URLs
+- Download as PNG
 - Copy QR image to clipboard
 
 ### **🔍 QR Code Scanner**
 
 - Upload images containing QR codes
 - Instant decoding & content extraction
-- Copy scanned data with one click
-
-### **🎨 Premium UI/UX**
-
-- **Minimalist, tab-based interface**
-- **Dark/Light mode** (planned)
-- **Micro-interactions** for smooth UX
-- **Fully responsive** design
+- Launch scanned URLs directly
 
 ---
 
 ## **📥 Installation Guide**
 
-### **Option 1: Install from Chrome Web Store (Recommended)**
+### **For Chrome Users**
 
-_(Coming soon!)_
+1. **From Chrome Web Store** (Coming Soon)
 
-### **Option 2: Manual Installation (Developer Mode)**
+   - Search for "Link Optimizer+" in Chrome Web Store
+   - Click "Add to Chrome"
 
-1. **Clone the repository:**
-
+2. **Manual Installation**
    ```bash
-   git clone https://github.com/yourusername/link-optimizer-plus.git
-   cd link-optimizer-plus
+   git clone https://github.com/absknpl/link-optimizer.git
    ```
-
-2. **Load into Chrome:**
-
    - Open `chrome://extensions`
-   - Enable **Developer Mode** (toggle in top-right)
-   - Click **"Load Unpacked"** and select the project folder
+   - Enable **Developer mode**
+   - Click **Load unpacked** and select the extension folder
 
-3. **Pin the extension** for quick access!
+### **For Firefox Users**
+
+1. **From Mozilla Add-ons** (Coming Soon)
+
+   - Search for "Link Optimizer+" in Firefox Add-ons
+   - Click "Add to Firefox"
+
+2. **Manual Installation**
+   ```bash
+   git clone https://github.com/absknpl/link-optimizer.git
+   ```
+   - Open `about:debugging`
+   - Click "This Firefox"
+   - Click "Load Temporary Add-on"
+   - Select any file in the extension folder
 
 ---
 
@@ -101,60 +101,49 @@ _(Coming soon!)_
 
 ### **Shortening URLs**
 
-1. Click the extension icon in your toolbar.
-2. Navigate to the **"Shorten URL"** tab.
-3. Click **"Shorten Current URL"**.
-4. Copy the shortened link with the **Copy** button.
+1. Click the extension icon
+2. Navigate to "Shorten URL" tab
+3. Click "Shorten Current URL"
+4. Copy the shortened link
 
 ### **Generating QR Codes**
 
-1. Open the extension popup.
-2. Go to the **"QR Code"** tab.
-3. Either:
-   - Enter a custom URL, or
-   - Click **"QR for Current Page"**
-4. Download or copy the generated QR code.
+1. Open the extension
+2. Go to "QR Code" tab
+3. Enter URL or click "QR for Current Page"
+4. Download or copy the QR code
 
 ### **Scanning QR Codes**
 
-1. Open the extension.
-2. Switch to the **"Scan QR"** tab.
-3. Upload an image containing a QR code.
-4. View the decoded content instantly.
+1. Open the extension
+2. Switch to "Scan QR" tab
+3. Upload an image with QR code
+4. View or launch the decoded URL
 
 ---
 
 ## **⚙ Technical Architecture**
 
-### **Tech Stack**
+### **Cross-Browser Support**
 
-| Component     | Technology                      |
-| ------------- | ------------------------------- |
-| Frontend      | HTML5, CSS3, Vanilla JS         |
-| QR Generation | QRCode.js                       |
-| QR Scanning   | jsQR                            |
-| Browser API   | Chrome Extensions (Manifest V3) |
-| UI Framework  | Custom CSS (No Bootstrap)       |
+| Feature        | Chrome | Firefox |
+| -------------- | ------ | ------- |
+| URL Shortening | ✓      | ✓       |
+| QR Generation  | ✓      | ✓       |
+| QR Scanning    | ✓      | ✓       |
+| Clipboard API  | ✓      | ✓       |
 
 ### **File Structure**
 
 ```
-link-optimizer-plus/
-├── assets/               # Images & icons
-├── popup/               # Extension popup UI
-│   ├── popup.html       # Main interface
-│   ├── popup.css        # Styling
-│   └── popup.js         # Core functionality
-├── background.js        # Background processes
-├── manifest.json        # Extension config
-└── README.md            # This file
+link-optimizer/
+├── chrome/            # Chrome-specific files
+├── firefox/           # Firefox-specific files
+├── shared/            # Common assets
+├── manifest.json      # Chrome manifest
+├── manifest.firefox.json # Firefox manifest
+└── README.md
 ```
-
-### **Performance Metrics**
-
-- **Load Time:** < 50ms
-- **Memory Usage:** < 30MB
-- **Zero External Dependencies**
 
 ---
 
@@ -162,71 +151,61 @@ link-optimizer-plus/
 
 ### **Prerequisites**
 
-- Chrome Browser (v100+)
 - Git
+- Chrome or Firefox browser
 
-### **Build Steps**
+### **Building for Different Browsers**
 
-1. Clone the repo (see [Installation](#-installation-guide)).
-2. Make changes to:
+```bash
+# For Chrome development
+cd chrome/
+# Make changes and test in Chrome
 
-   - `popup/popup.js` for logic
-   - `popup/popup.css` for styling
-   - `manifest.json` for Chrome config
-
-3. **Testing:**
-
-   - Reload the extension in `chrome://extensions` after changes.
-   - Use Chrome DevTools (`Ctrl+Shift+I` on popup) for debugging.
-
-4. **Linting:**
-   ```bash
-   # (Optional) Install ESLint for JS checks
-   npm install -g eslint
-   eslint popup/popup.js
-   ```
+# For Firefox development
+cd firefox/
+# Make changes and test in Firefox
+```
 
 ---
 
 ## **🤝 Contributing**
 
-We welcome contributions! Here’s how:
+We welcome contributions for both Chrome and Firefox versions!
 
-1. **Fork** the repository.
-2. Create a **new branch** (`git checkout -b feature/awesome-feature`).
-3. **Commit** changes (`git commit -m 'Add awesome feature'`).
-4. **Push** to the branch (`git push origin feature/awesome-feature`).
-5. Open a **Pull Request**.
+1. Fork the repository
+2. Create a feature branch
+3. Submit a pull request
 
-**Guidelines:**
+**Please specify** if your changes are for:
 
-- Follow **JavaScript Standard Style**.
-- Document new features in the README.
-- Test changes thoroughly.
+- Chrome only
+- Firefox only
+- Both browsers
 
 ---
 
 ## **📜 License**
 
-This project is licensed under the **MIT License**.  
-See [LICENSE](LICENSE) for details.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
 ## **📞 Support & Contact**
 
-**Got questions?** Reach out!
+For issues with:
 
-- **GitHub Issues:** [Report Bugs/Requests](https://github.com/absknpl/link-optimizer/issues)
-- **Email:** contactl@abisek.dev
+- **Chrome version**: contact@abisek.dev
+- **Firefox version**: contact@abisek.dev
+
+General inquiries: contact@abisek.dev
 
 ---
 
 ## **🌟 Why Choose Link Optimizer+?**
 
-✅ **Lightweight** – No bloat, just performance.  
-✅ **Professional UI** – Sleek and intuitive.  
-✅ **All-in-One** – URL + QR tools in a single click.
+✅ **Cross-browser** - Works on Chrome and Firefox  
+✅ **Lightweight** - No unnecessary bloat  
+✅ **All-in-One** - URL + QR tools in one place
 
 **🚀 Download now and optimize your workflow today!**
 
@@ -236,14 +215,6 @@ See [LICENSE](LICENSE) for details.
   <a href="#-link-optimizer">⬆️ Back to Top</a>
 </div>
 
----
+[![GitHub Stars](https://img.shields.io/github/stars/absknpl/link-optimizer?style=social)](https://github.com/absknpl/link-optimizer)
 
-### **📌 Pro Tip:**
-
-Star ⭐ this repo to stay updated on new features!
-
-[![GitHub Stars](https://img.shields.io/github/stars/yourusername/link-optimizer-plus?style=social)](https://github.com/absknpl/link-optimizer)
-
----
-
-**Crafted with ❤️ by [abisek]**
+**Crafted with ❤️ by abisek**

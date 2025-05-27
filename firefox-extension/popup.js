@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // URL Shortening
     document.getElementById('shorten-btn').addEventListener('click', async () => {
         try {
-            const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+            const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+            const tab = tabs[0];
             const longUrl = tab.url;
             
             const response = await fetch(SPOO_API_URL, {
@@ -61,7 +62,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('copy-short').addEventListener('click', () => {
         const shortUrl = document.getElementById('short-url').value;
         if (shortUrl && !shortUrl.startsWith('Error')) {
-            navigator.clipboard.writeText(shortUrl);
+            navigator.clipboard.writeText(shortUrl).then(() => {
+                // Optional: Add visual feedback for copy action
+                const originalText = copyShortBtn.textContent;
+                copyShortBtn.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyShortBtn.textContent = originalText;
+                }, 2000);
+            });
         }
     });
 
@@ -75,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.getElementById('generate-current').addEventListener('click', function() {
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        browser.tabs.query({ active: true, currentWindow: true }).then(function(tabs) {
             const tab = tabs[0];
             if (tab.url.startsWith('http')) {
                 qrcodeDiv.innerHTML = '';
@@ -167,13 +175,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scanned URL Actions
     launchSiteBtn.addEventListener('click', function() {
         if (currentScannedUrl) {
-            chrome.tabs.create({ url: currentScannedUrl });
+            browser.tabs.create({ url: currentScannedUrl });
         }
     });
 
     copyScannedBtn.addEventListener('click', function() {
         if (scannedUrlDiv.textContent && scannedUrlDiv.textContent !== 'No QR code found') {
-            navigator.clipboard.writeText(scannedUrlDiv.textContent);
+            navigator.clipboard.writeText(scannedUrlDiv.textContent).then(() => {
+                // Optional: Add visual feedback for copy action
+                const originalText = copyScannedBtn.textContent;
+                copyScannedBtn.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyScannedBtn.textContent = originalText;
+                }, 2000);
+            });
         }
     });
 });
