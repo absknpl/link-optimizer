@@ -187,7 +187,7 @@ We welcome contributions for both Chrome and Firefox versions!
 ## **📜 License**
 
 MIT License - see [LICENSE](LICENSE) for details.
-
+Version 1.0.0
 ---
 
 ## **📞 Support & Contact**
