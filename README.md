@@ -1,5 +1,3 @@
-Here's the updated README that covers both Chrome and Firefox versions:
-
 # **Link Optimizer+**
 
 🚀 **The Ultimate Browser Extension for URL Shortening & QR Code Management** (Chrome & Firefox)
