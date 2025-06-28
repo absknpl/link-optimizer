@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Generator</title>
+    <script src="qrcode.min.js"></script>
+    <script src="scriptTwo.js"></script>
+    <style>
+        .gui-box {
+            width: 450px;
+            height: 300px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            background: radial-gradient(circle at 0% 5%, rgb(252, 164, 184), rgb(71, 171, 230));
+        }
+
+        .btn-moving-gradient {
+            height: 35px;
+            width: 120px;
+            font-size: 16px;
+            font-weight: 600;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            border: none;
+            background-size: 300% 100%;
+            border-radius: 50px;
+        }
+
+        .btn-moving-gradient:hover {
+            transition: all 0.5s ease-in-out 0s;
+            background-position: 100% 0px;
+        }
+
+        .btn-moving-gradient--pink {
+            background-image: linear-gradient(90deg, rgb(139, 126, 132), rgb(17, 8, 1), rgb(60, 62, 62), rgb(47, 48, 48));
+        }
+
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #qrcode img {
+            max-width: 25%; /* Set the maximum width to make the QR code smaller */
+            max-height: 25%; /* Set the maximum height */
+        }
+    </style>
+</head>
+<body>
+    <div class="gui-box">
+        <h2 font="Leckerli One">QR Code Generator</h2>
+        <input type="text" id="linkInput" placeholder="Enter a link"><br><br>
+        <button class="btn btn-moving-gradient btn-moving-gradient--pink" id="generateLinkButton">Enter Link</button>
+        <button class="btn btn-moving-gradient btn-moving-gradient--pink" id="generateCurrentPageButton">Current Page</button>
+        <br><br>
+        <div id="qrcode"></div><br><br>
+        <button class="btn btn-moving-gradient btn-moving-gradient--pink" id="copyQRButton"> Copy</button>
+        <button class="btn btn-moving-gradient btn-moving-gradient--pink" id="backButton">Back</button>
+    </div>
+    
+</body>
+</html>
